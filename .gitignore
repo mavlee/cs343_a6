@@ -1,7 +1,11 @@
+*~
+*swp
+
 # Compiled Object files
 *.slo
 *.lo
 *.o
+*.d
 
 # Compiled Dynamic libraries
 *.so
