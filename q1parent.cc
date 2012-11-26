@@ -17,6 +17,6 @@ void Parent::main() {
       unsigned int money = rng(1,3);
       unsigned int student = rng(numStudents);
       delay(parentalDelay);
-      // give money to student somehow
+      bank.deposit(student, amount);
     }
 }
