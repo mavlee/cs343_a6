@@ -2,6 +2,7 @@
 #include "q1printer.h"
 #include "q1nameserver.h"
 #include "q1bottlingplant.h"
+#include "q1truck.h"
 #include "MPRNG.h"
 
 Truck::Truck( Printer &prt, NameServer &nameServer, BottlingPlant &plant,
