@@ -5,7 +5,7 @@
 
 // forward declarations
 _Monitor Printer;
-_Task Bank;
+_Monitor Bank;
 
 _Task Parent {
   private:
