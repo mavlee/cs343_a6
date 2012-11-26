@@ -1,6 +1,7 @@
 #include <uC++.h>
 #include <iostream>
 #include "MPRNG.h"
+#include "q1configparams.h"
 using namespace std;
 
 // global random number generator
@@ -23,6 +24,16 @@ void usage(char *argv[]) {
 void uMain::main() {
   // set the defaults first
   string configFile = "soda.config";
+  ifstream file;
+  ConfigParams params;
+
+  try {
+    file.open(configFile.c_str());
+    processConfigFile(configFile.c_str(), params);
+  } catch (uFile::Failure) {
+    cerr << "Error: could not open input file " << configFile << endl;
+    exit(EXIT_FAILURE);
+  }
   int seed = (int) getpid();
 
   // for usage in loops
