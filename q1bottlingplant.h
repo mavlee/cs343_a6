@@ -10,6 +10,9 @@ _Task BottlingPlant {
   private:
     Printer &printer;
     NameServer &nameServer;
+    unsigned int maxShippedPerFlavour;
+    unsigned int maxStockPerFlavour;
+    unsigned int timeBetweenShipments;
     void main();
   public:
     BottlingPlant( Printer &prt, NameServer &nameServer, unsigned int numVendingMachines,
