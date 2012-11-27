@@ -8,6 +8,10 @@ Bank::Bank( unsigned int numStudents ) {
     amounts[i] = 0;
 }
 
+Bank::~Bank() {
+  delete [] amounts;
+}
+
 void Bank::deposit( unsigned int id, unsigned int amount ) {
   amounts[id] += amount;
 }
