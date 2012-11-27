@@ -4,6 +4,13 @@
 #include <uC++.h>
 
 _Monitor Printer {
+  private:
+    unsigned int numObjects;
+    unsigned int numStudents;
+    unsigned int numVendingMachines;
+    unsigned int numCouriers;
+    char *status;                 // holds the state type
+    unsigned int **statusNumbers; // holds the values for various states
   public:
     enum Kind { Parent, WATCardOffice, NameServer, Truck, BottlingPlant, Student, Vending, Courier };
     Printer( unsigned int numStudents, unsigned int numVendingMachines, unsigned int numCouriers );
