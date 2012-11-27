@@ -8,10 +8,7 @@ MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}	# makefile name
 OBJECTS1 = q1configparams.o q1main.o
 EXEC1 = soda
 
-OBJECTS2 = q1configparams.o q1test.o
-EXEC2 = configparams
-
-OBJECTS = ${OBJECTS1} ${OBJECTS2}				# all object files
+OBJECTS = ${OBJECTS1}				# all object files
 DEPENDS = ${OBJECTS:.o=.d}						# substitute ".o" with ".d"
 EXECS = ${EXEC1} ${EXEC2}						# all executables
 
@@ -24,8 +21,6 @@ all : ${EXECS}									# build all executables
 ${EXEC1} : ${OBJECTS1}							# link step 1st executable
 	${CXX} ${CXXFLAGS} $^ -o $@
 
-${EXEC2} : ${OBJECTS2}							# link step 1st executable
-	${CXX} ${CXXFLAGS} $^ -o $@
 #############################################################
 ${OBJECTS} : ${MAKEFILE_NAME}					# OPTIONAL : changes to this file => recompile
 
