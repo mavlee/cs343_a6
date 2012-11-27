@@ -6,7 +6,7 @@
 // forward declarations
 _Monitor Printer;
 _Task WATCardOffice;
-_Task NameServer
+_Task NameServer;
 
 _Task Student {
   void main();
@@ -14,6 +14,9 @@ _Task Student {
   unsigned int id;
   unsigned int maxPurchases;
 
+  Printer &printer;
+  NameServer &nameServer;
+  WATCardOffice &office;
 
   public:
   Student( Printer &prt, NameServer &nameServer, WATCardOffice &cardOffice, unsigned int id,
