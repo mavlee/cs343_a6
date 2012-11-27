@@ -12,7 +12,8 @@ _Task Student {
   void main();
 
   unsigned int id;
-  unsigned int maxPurchases;
+  unsigned int purchasesLeft;
+  unsigned int favFlavour;
 
   Printer &printer;
   NameServer &nameServer;
