@@ -7,3 +7,6 @@
 WATCardOffice::WATCardOffice( Printer &prt, Bank &bank, unsigned int numCouriers ) : printer(prt), bank(bank) {
   this->numCouriers = numCouriers;
 }
+
+void WATCardOffice::main() {
+}

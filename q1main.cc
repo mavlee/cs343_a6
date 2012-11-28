@@ -6,9 +6,11 @@
 #include "q1bank.h"
 #include "q1parent.h"
 #include "q1watcardoffice.h"
+#include "q1watcard.h"
 #include "q1nameserver.h"
 #include "q1bottlingplant.h"
 #include "q1student.h"
+#include "q1truck.h"
 using namespace std;
 
 // global random number generator

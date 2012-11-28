@@ -24,6 +24,9 @@ VendingMachine::Status VendingMachine::buy(Flavours flavour, WATCard &card) {
   return BUY;
 }
 
+void VendingMachine::main() {
+}
+
 unsigned int* VendingMachine::inventory() {
   return stock;
 }
