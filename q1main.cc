@@ -69,16 +69,25 @@ void uMain::main() {
   // order the printer, bank, parent, WATCard ofﬁce, name server, vending machines, bottling plant, and students. The
   // truck is created by the bottling plant; the couriers are created by the WATCard ofﬁce.
   Printer printer(params.numStudents, params.numVendingMachines, params.numCouriers);
-  Bank bank(params.numStudents);
-  Parent parent(printer, bank, params.numStudents, params.parentalDelay);
-  WATCardOffice office(printer, bank, params.numCouriers);
-  NameServer nameServer(printer, params.numVendingMachines, params.numStudents);
-  BottlingPlant bottlingPlant(printer, nameServer, params.numVendingMachines, params.maxShippedPerFlavour, params.maxStockPerFlavour, params.timeBetweenShipments);
+  Bank *bank = new Bank(params.numStudents);
+  Parent *parent = new Parent(printer, *bank, params.numStudents, params.parentalDelay);
+  WATCardOffice *office = new WATCardOffice(printer, *bank, params.numCouriers);
+  NameServer *nameServer = new NameServer(printer, params.numVendingMachines, params.numStudents);
+  BottlingPlant *bottlingPlant = new BottlingPlant(printer, *nameServer, params.numVendingMachines, params.maxShippedPerFlavour, params.maxStockPerFlavour, params.timeBetweenShipments);
   Student *students[params.numStudents];
   VendingMachine *machines[params.numVendingMachines];
-  for (i = 0; i < params.numStudents; i++) {
-    students[i] = new Student(printer, nameServer, office, i, params.maxPurchases);
-    machines[i] = new VendingMachine(printer, nameServer, i, params.sodaCost, params.maxStockPerFlavour);
-  }
-  // delete stuff
+  for (i = 0; i < params.numStudents; i++)
+    students[i] = new Student(printer, *nameServer, *office, i, params.maxPurchases);
+
+  for (i = 0; i < params.numVendingMachines; i++)
+    machines[i] = new VendingMachine(printer, *nameServer, i, params.sodaCost, params.maxStockPerFlavour);
+
+
+  for (i = 0; i < params.numStudents; i++)
+    delete students[i];
+
+  for (i = 0; i < params.numVendingMachines; i++)
+    delete machines[i];
+
+  // delete stuff other
 }
