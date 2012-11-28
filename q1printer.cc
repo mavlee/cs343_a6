@@ -21,11 +21,11 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
   for (unsigned int i = 0; i < numObjects; i++)
     status[i] = '\0';
 
-  statusNumbers = new int *[numObjects];
+  statusValues = new int *[numObjects];
   for (unsigned int i = 0; i < numObjects; i++) {
-    statusNumbers[i] = new int[2];
-    statusNumbers[i][0] = -1;
-    statusNumbers[i][1] = -1;
+    statusValues[i] = new int[2];
+    statusValues[i][0] = -1;
+    statusValues[i][1] = -1;
   }
 
   // print the table header
@@ -192,6 +192,6 @@ Printer::~Printer() {
   printf("***********************\n");
   delete status;
   for (unsigned int i = 0; i < numObjects; i++)
-    delete [] statusNumbers[i];
-  delete [] statusNumbers;
+    delete [] statusValues[i];
+  delete [] statusValues;
 }

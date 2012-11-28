@@ -2,6 +2,9 @@
 #include <iostream>
 #include "MPRNG.h"
 #include "q1configparams.h"
+#include "q1printer.h"
+#include "q1bank.h"
+#include "q1parent.h"
 using namespace std;
 
 // global random number generator
@@ -24,17 +27,9 @@ void usage(char *argv[]) {
 void uMain::main() {
   // set the defaults first
   string configFile = "soda.config";
+  int seed = (int) getpid();
   ifstream file;
   ConfigParams params;
-
-  try {
-    file.open(configFile.c_str());
-    processConfigFile(configFile.c_str(), params);
-  } catch (uFile::Failure) {
-    cerr << "Error: could not open input file " << configFile << endl;
-    exit(EXIT_FAILURE);
-  }
-  int seed = (int) getpid();
 
   // for usage in loops
   unsigned int i;
@@ -51,11 +46,24 @@ void uMain::main() {
     usage(argv);
 
   // try to read in the file
+  try {
+    file.open(configFile.c_str());
+    processConfigFile(configFile.c_str(), params);
+  } catch (uFile::Failure) {
+    cerr << "Error: could not open input file " << configFile << endl;
+    exit(EXIT_FAILURE);
+  }
 
   // set the seed
   rng.seed(seed);
 
   // init stuff
+  // It then creates in
+  // order the printer, bank, parent, WATCard ofﬁce, name server, vending machines, bottling plant, and students. The
+  // truck is created by the bottling plant; the couriers are created by the WATCard ofﬁce.
+  Printer printer(params.numStudents, params.numVendingMachines, params.numCouriers);
+  Bank bank(params.numStudents);
+  Parent parent(printer, bank, params.numStudents, params.parentalDelay);
 
   // delete stuff
 }

@@ -5,7 +5,7 @@ CXX = u++										# compiler
 CXXFLAGS = -g -Wall -Wno-unused-label -MMD ${OPT}
 MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}	# makefile name
 
-OBJECTS1 = q1student.o q1bank.o q1configparams.o q1main.o
+OBJECTS1 = q1parent.o q1printer.o q1bank.o q1configparams.o q1main.o
 EXEC1 = soda
 
 OBJECTS = ${OBJECTS1}				# all object files
