@@ -26,6 +26,7 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
     statusNumbers[i] = new int[2];
     statusNumbers[i][0] = -1;
     statusNumbers[i][1] = -1;
+  }
 
   // print the table header
   printf("Parent\tWATOff\tNames\tTruck\tPlant\t");
