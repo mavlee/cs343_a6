@@ -14,4 +14,7 @@ Truck::Truck( Printer &prt, NameServer &nameServer, BottlingPlant &plant,
 
 void Truck::main() {
   // fill this stuff out
+  printer.print(Printer::Truck, 'S');
+
+  printer.print(Printer::Truck, 'F');
 }

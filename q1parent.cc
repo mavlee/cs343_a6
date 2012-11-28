@@ -21,6 +21,3 @@ void Parent::main() {
     }
   }
 }
-
-Parent::~Parent() {
-}
