@@ -50,7 +50,7 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
  ***************************/
 void Printer::print( Kind kind, char state ) {
   // call another version of print to avoid redundant code
-  print(kind, state, 0, 0);
+  print(kind, state, -1, -1);
 
   // special case for finishing - only happens in this value-free case
   if (state == 'F')
@@ -66,7 +66,7 @@ void Printer::print( Kind kind, char state ) {
  ***************************/
 void Printer::print( Kind kind, char state, int value1 ) {
   // call another version of print to avoid redundant code
-  print(kind, state, value1, 0);
+  print(kind, state, value1, -1);
 }
 
 /********* print ************
@@ -95,7 +95,7 @@ void Printer::print( Kind kind, char state, int value1, int value2 ) {
  ***************************/
 void Printer::print( Kind kind, unsigned int lid, char state ) {
   // call another version of print to avoid redundant code
-  print(kind, lid, state, 0, 0);
+  print(kind, lid, state, -1, -1);
 
   // special case for finishing - only happens in this value-free case
   if (state == 'F')
@@ -112,7 +112,7 @@ void Printer::print( Kind kind, unsigned int lid, char state ) {
  ***************************/
 void Printer::print( Kind kind, unsigned int lid, char state, int value1 ) {
   // call another version of print to avoid redundant code
-  print(kind, lid, state, value1, 0);
+  print(kind, lid, state, value1, -1);
 }
 
 /********* print ************
