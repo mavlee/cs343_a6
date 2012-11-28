@@ -15,7 +15,6 @@ void WATCardOffice::Courier::main() {
 
       unsigned int sid = task->args.sid;
       unsigned int amount = task->args.amount;
-      Bank *bank = task->args.bank;
 
       // TODO: Simulate lost card
 
@@ -23,20 +22,29 @@ void WATCardOffice::Courier::main() {
           task->args.card = new WATCard();
           task->args.card->deposit(5);
       } else if (task->args.type == Transfer) {
-          bank->withdraw(sid, amount);             // Block here until funds are available
+          bank.withdraw(sid, amount);             // Block here until funds are available
           task->args.card->deposit(amount);
       }
     }
   }
 }
 
-WATCardOffice::Courier::Courier() {
+WATCardOffice::Courier::Courier(Bank &bank, Printer &prt) :
+bank(bank), printer(prt) {
 
 }
 
 WATCardOffice::WATCardOffice( Printer &prt, Bank &bank, unsigned int numCouriers ) : printer(prt), bank(bank) {
   this->numCouriers = numCouriers;
-  couriers = new Courier[numCouriers];
+  couriers = new Courier* [numCouriers];
+  for (unsigned int i = 0; i < numCouriers; i++)
+    couriers[i] = new Courier(bank, prt);
+}
+
+WATCardOffice::~WATCardOffice() {
+  for (unsigned int i = 0; i < numCouriers; i++)
+    delete couriers[i];
+  delete couriers;
 }
 
 void WATCardOffice::main() {
@@ -48,14 +56,14 @@ void WATCardOffice::main() {
 }
 
 FWATCard WATCardOffice::create(unsigned int sid, unsigned int amount) {
-  Args args = {Create, sid, amount, NULL, &bank};
+  Args args = {Create, sid, amount, NULL};
   Job *task = new Job(args);
   jobQueue.push_back(task);
   return task->result;
 }
 
 FWATCard WATCardOffice::transfer(unsigned int sid, unsigned int amount, WATCard *card) {
-  Args args = {Transfer, sid, amount, card, &bank};
+  Args args = {Transfer, sid, amount, card};
   Job *task = new Job(args);
   jobQueue.push_back(task);
   return task->result;

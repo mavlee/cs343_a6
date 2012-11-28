@@ -18,7 +18,6 @@ _Task WATCardOffice {
       unsigned int sid;
       unsigned int amount;
       WATCard *card;
-      Bank *bank;
       // some arguments
     } Args;
 
@@ -30,15 +29,17 @@ _Task WATCardOffice {
 
     _Task Courier {
       private:
+        Bank &bank;
+        Printer &printer;
         void main();
       public:
-        Courier();
+        Courier(Bank &bank, Printer &prt);
     };      // communicates with bank
 
     Printer &printer;
     Bank &bank;
     unsigned int numCouriers;
-    Courier *couriers;
+    Courier **couriers;
 
     std::vector<Job*> jobQueue;
 
@@ -47,6 +48,7 @@ _Task WATCardOffice {
   public:
     //_Event Lost {};
     WATCardOffice( Printer &prt, Bank &bank, unsigned int numCouriers );
+    ~WATCardOffice();
     FWATCard create( unsigned int sid, unsigned int amount );
     FWATCard transfer( unsigned int sid, unsigned int amount, WATCard *card );
     //Job *requestWork();
