@@ -2,6 +2,7 @@
 #include "q1printer.h"
 #include "q1nameserver.h"
 #include "q1vendingmachine.h"
+#include "q1watcard.h"
 
 VendingMachine::VendingMachine( Printer &prt, NameServer &nameServer,
     unsigned int id, unsigned int sodaCost, unsigned int maxStockPerFlavour ) : printer(prt), nameServer(nameServer) {
@@ -15,7 +16,7 @@ VendingMachine::VendingMachine( Printer &prt, NameServer &nameServer,
     stock[i] = '0';
 }
 
-Status VendingMachine::buy(Flavours: flavour, WATCard &card) {
+VendingMachine::Status VendingMachine::buy(Flavours flavour, WATCard &card) {
   if (stock[flavour] == 0)
     return STOCK;
   if (card.getBalance() < sodaCost)
@@ -40,5 +41,5 @@ unsigned int VendingMachine::getId() {
 }
 
 VendingMachine::~VendingMachine() {
-  delete inventory;
+  delete stock;
 }

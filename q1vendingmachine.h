@@ -3,8 +3,10 @@
 
 #include <uC++.h>
 
+// forward declarations
 _Monitor Printer;
 _Task NameServer;
+class WATCard;
 
 _Task VendingMachine {
   private:

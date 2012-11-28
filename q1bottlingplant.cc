@@ -9,7 +9,7 @@ BottlingPlant::BottlingPlant( Printer &prt, NameServer &nameServer, unsigned int
       unsigned int timeBetweenShipments ) : printer(prt), nameServer(nameServer) {
   this->maxShippedPerFlavour = maxShippedPerFlavour;
   this->maxStockPerFlavour = maxStockPerFlavour;
-  this->timeBetweenShipments timeBetweenShipments;
+  this->timeBetweenShipments = timeBetweenShipments;
 }
 
 bool BottlingPlant::getShipment( unsigned int cargo[] ) {

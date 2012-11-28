@@ -5,6 +5,10 @@
 #include "q1printer.h"
 #include "q1bank.h"
 #include "q1parent.h"
+#include "q1watcardoffice.h"
+#include "q1nameserver.h"
+#include "q1bottlingplant.h"
+#include "q1student.h"
 using namespace std;
 
 // global random number generator
@@ -64,6 +68,12 @@ void uMain::main() {
   Printer printer(params.numStudents, params.numVendingMachines, params.numCouriers);
   Bank bank(params.numStudents);
   Parent parent(printer, bank, params.numStudents, params.parentalDelay);
+  WATCardOffice office(printer, bank, params.numCouriers);
+  NameServer nameServer(printer, params.numVendingMachines, params.numStudents);
+  BottlingPlant bottlingPlant(printer, nameServer, params.numVendingMachines, params.maxShippedPerFlavour, params.maxStockPerFlavour, params.timeBetweenShipments);
+  Student *students[params.numStudents];
+  for (i = 0; i < params.numStudents; i++)
+    students[i] = new Student(printer, nameServer, office, i, params.maxPurchases);
 
   // delete stuff
 }

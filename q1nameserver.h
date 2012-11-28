@@ -3,6 +3,8 @@
 
 #include <uC++.h>
 
+_Task VendingMachine;
+
 _Task NameServer {
   void main();
   public:
