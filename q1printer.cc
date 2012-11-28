@@ -58,7 +58,7 @@ void Printer::print( Kind kind, char state ) {
 }
 
 /********* print ************
- * Purpose: stores state for a voter
+ * Purpose: stores state for an object
  * Returns: void
  * Arguments: kind - the type of object
  *            state - the state of the object
@@ -70,7 +70,7 @@ void Printer::print( Kind kind, char state, int value1 ) {
 }
 
 /********* print ************
- * Purpose: stores state for a voter
+ * Purpose: stores state for an object
  * Returns: void
  * Arguments: kind - the type of object
  *            state - the state of the object
@@ -103,7 +103,7 @@ void Printer::print( Kind kind, unsigned int lid, char state ) {
 }
 
 /********* print ************
- * Purpose: stores state for a voter
+ * Purpose: stores state for an object
  * Returns: void
  * Arguments: kind - the type of object
  *            lid - the id of the object
@@ -116,7 +116,7 @@ void Printer::print( Kind kind, unsigned int lid, char state, int value1 ) {
 }
 
 /********* print ************
- * Purpose: stores state for a voter
+ * Purpose: stores state for an object
  * Returns: void
  * Arguments: kind - the type of object
  *            lid - the id of the object
