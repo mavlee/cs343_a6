@@ -21,9 +21,11 @@ Printer::Printer( unsigned int numStudents, unsigned int numVendingMachines, uns
   for (unsigned int i = 0; i < numObjects; i++)
     status[i] = '\0';
 
-  statusNumbers = new unsigned int *[numObjects];
-  for (unsigned int i = 0; i < numObjects; i++)
-    statusNumbers[i] = new unsigned int[2];
+  statusNumbers = new int *[numObjects];
+  for (unsigned int i = 0; i < numObjects; i++) {
+    statusNumbers[i] = new int[2];
+    statusNumbers[i][0] = -1;
+    statusNumbers[i][1] = -1;
 
   // print the table header
   printf("Parent\tWATOff\tNames\tTruck\tPlant\t");
@@ -137,23 +139,24 @@ void Printer::print( Kind kind, unsigned int lid, char state, int value1, int va
 void Printer::displayStatus() {
   // fill out later
 
-  /*
-  for (unsigned int i = 0; i < numVoters; i++) {
+  for (unsigned int i = 0; i < numObjects; i++) {
     if (status[i] == '\0')
       printf("\t");
-    else if (status[i] == Voter::Start || status[i] == Voter::Complete)
-      printf("%c\t", status[i]);
+    else if (statusValues[i][0] >= 0 && statusValues[i][1] >= 0)
+      printf("%c%d,%d\t", status[i], statusValues[i][0], statusValues[i][1]);
+    else if (statusValues[i][0] >= 0)
+      printf("%c%d\t", status[i], statusValues[i][0]);
     else
-      printf("%c %d\t", status[i], statusValues[i]);
+      printf("%c\t", status[i]);
   }
   printf("\n");
 
   // reset all the statuses
-  for (unsigned int i = 0; i < numVoters; i++) {
+  for (unsigned int i = 0; i < numObjects; i++) {
     status[i] = '\0';
-    statusValues[i] = 0;
+    statusValues[i][0] = 0;
+    statusValues[i][1] = 0;
   }
-  */
 }
 
 /********* printFinish ************

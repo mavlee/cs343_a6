@@ -10,7 +10,7 @@ _Monitor Printer {
     unsigned int numVendingMachines;
     unsigned int numCouriers;
     char *status;                 // holds the state type
-    unsigned int **statusNumbers; // holds the values for various states
+    int **statusNumbers; // holds the values for various states
   public:
     enum Kind { Parent, WATCardOffice, NameServer, Truck, BottlingPlant, Student, Vending, Courier };
     Printer( unsigned int numStudents, unsigned int numVendingMachines, unsigned int numCouriers );
