@@ -39,9 +39,16 @@ void Truck::main() {
     if (isPlantClosing)
       break;
 
+    // picked up shipment message
+    unsigned int totalStock = 0;
+    for (unsigned int i = 0; i < 4; i++)
+      totalStock += inventory[i];
+    printer.print(Printer::Truck, 'P', totalStock);
+
     // stock machines
     startingMachine = currentMachine;
     do {
+      printer.print(Printer::Truck, 'd');
       unsigned int *machineStock = machines[currentMachine]->inventory();
 
       // 4 sodas
@@ -53,7 +60,10 @@ void Truck::main() {
           machineStock[i] = maxStockPerFlavour;
         }
       }
+      // todo: fix this output
+      printer.print(Printer::Truck, 'U', currentMachine, 0);
 
+      printer.print(Printer::Truck, 'D', currentMachine, 0);
       if (currentMachine == numVendingMachines - 1)
         currentMachine = 0;
       else
