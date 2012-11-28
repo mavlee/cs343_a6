@@ -8,15 +8,18 @@ NameServer::NameServer( Printer &prt, unsigned int numVendingMachines, unsigned 
   this->numStudents = numStudents;
   machineCount = 0;
   machines = new VendingMachine *[numVendingMachines];
+  printer.print(Printer::NameServer, 'S');
 }
 
 void NameServer::VMregister( VendingMachine *vendingmachine ) {
+  printer.print(Printer::NameServer, 'R', machineCount);
   machines[machineCount] = vendingmachine;
   machineCount++;
 }
 
 VendingMachine* NameServer::getMachine( unsigned int id ) {
-  return machines[id % (machineCount+1)];
+  printer.print(Printer::NameServer, 'N', id % (machineCount));
+  return machines[id % (machineCount)];
 }
 
 VendingMachine** NameServer::getMachineList() {
@@ -38,5 +41,5 @@ NameServer::~NameServer() {
   for (unsigned int i = 0; i < numVendingMachines; i++)
     delete machines[i];
   delete machines;
-
+  printer.print(Printer::NameServer, 'F');
 }

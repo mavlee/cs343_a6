@@ -15,6 +15,8 @@ VendingMachine::VendingMachine( Printer &prt, NameServer &nameServer,
   for (unsigned int i = 0; i < 4; i++)
     stock[i] = 0;
 
+  printer.print(Printer::Vending, id, 'S');
+
   nameServer.VMregister(this);
 
   stocking = false;
@@ -26,6 +28,7 @@ VendingMachine::Status VendingMachine::buy(Flavours flavour, WATCard &card) {
   if (stock[flavour] == 0)
     return STOCK;
   stock[flavour]--;
+  printer.print(Printer::Vending, id, 'B', flavour, stock[flavour]);
   return BUY;
 }
 
@@ -43,11 +46,13 @@ void VendingMachine::main() {
 
 unsigned int* VendingMachine::inventory() {
   stocking = true;
+  printer.print(Printer::Vending, id, 'r');
   return stock;
 }
 
 void VendingMachine::restocked() {
   stocking = false;
+  printer.print(Printer::Vending, id, 'R');
 }
 
 unsigned int VendingMachine::cost() {
@@ -60,4 +65,5 @@ unsigned int VendingMachine::getId() {
 
 VendingMachine::~VendingMachine() {
   delete stock;
+  printer.print(Printer::Vending, id, 'F');
 }
