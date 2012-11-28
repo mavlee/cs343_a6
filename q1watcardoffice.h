@@ -31,9 +31,11 @@ _Task WATCardOffice {
       private:
         Bank &bank;
         Printer &printer;
+        unsigned int id;
         void main();
       public:
-        Courier(Bank &bank, Printer &prt);
+        Courier(Bank &bank, Printer &prt, unsigned int cid);
+        ~Courier();
     };      // communicates with bank
 
     Printer &printer;

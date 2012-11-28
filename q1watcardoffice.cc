@@ -22,29 +22,39 @@ void WATCardOffice::Courier::main() {
           task->args.card = new WATCard();
           task->args.card->deposit(5);
       } else if (task->args.type == Transfer) {
+          printer.print(Printer::Courier, id, 't', sid, amount);
           bank.withdraw(sid, amount);             // Block here until funds are available
           task->args.card->deposit(amount);
+          printer.print(Printer::Courier, id, 'T', sid, amount);
       }
     }
   }
 }
 
-WATCardOffice::Courier::Courier(Bank &bank, Printer &prt) :
+WATCardOffice::Courier::Courier(Bank &bank, Printer &prt, unsigned int cid) :
 bank(bank), printer(prt) {
+  id = cid;
+  printer.print(Printer::Courier, id, 'S');
+}
 
+WATCardOffice::Courier::~Courier(){
+  printer.print(Printer::Courier, id, 'F');
 }
 
 WATCardOffice::WATCardOffice( Printer &prt, Bank &bank, unsigned int numCouriers ) : printer(prt), bank(bank) {
   this->numCouriers = numCouriers;
   couriers = new Courier* [numCouriers];
   for (unsigned int i = 0; i < numCouriers; i++)
-    couriers[i] = new Courier(bank, prt);
+    couriers[i] = new Courier(bank, prt, i);
+
+  printer.print(Printer::WATCardOffice, 'S');
 }
 
 WATCardOffice::~WATCardOffice() {
   for (unsigned int i = 0; i < numCouriers; i++)
     delete couriers[i];
   delete couriers;
+  printer.print(Printer::WATCardOffice, 'F');
 }
 
 void WATCardOffice::main() {
@@ -70,5 +80,6 @@ FWATCard WATCardOffice::transfer(unsigned int sid, unsigned int amount, WATCard 
 }
 
 // WATCardOffice::Job WATCardOffice::*requestWork(){
+//    //Block until job is available to be dequeued
 //   return NULL;
 // }
