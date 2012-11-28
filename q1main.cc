@@ -11,6 +11,7 @@
 #include "q1bottlingplant.h"
 #include "q1student.h"
 #include "q1truck.h"
+#include "q1vendingmachine.h"
 using namespace std;
 
 // global random number generator
@@ -74,8 +75,10 @@ void uMain::main() {
   NameServer nameServer(printer, params.numVendingMachines, params.numStudents);
   BottlingPlant bottlingPlant(printer, nameServer, params.numVendingMachines, params.maxShippedPerFlavour, params.maxStockPerFlavour, params.timeBetweenShipments);
   Student *students[params.numStudents];
-  for (i = 0; i < params.numStudents; i++)
+  VendingMachine *machines[params.numVendingMachines];
+  for (i = 0; i < params.numStudents; i++) {
     students[i] = new Student(printer, nameServer, office, i, params.maxPurchases);
-
+    machines[i] = new VendingMachine(printer, nameServer, i, params.sodaCost, params.maxStockPerFlavour);
+  }
   // delete stuff
 }
