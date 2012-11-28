@@ -9,3 +9,8 @@ nameserver
 bottlingplant
 truck
 printer
+
+WATCardOffice:
+- get requestWork to work
+- simulate missing card
+- test
