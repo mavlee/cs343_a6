@@ -7,6 +7,7 @@ _Monitor Bank {
   private:
     unsigned int *amounts;
     unsigned int numStudents;
+    uCondition *noMoney;
   public:
     Bank( unsigned int numStudents );
     ~Bank();
