@@ -10,6 +10,8 @@ _Task BottlingPlant {
   private:
     Printer &printer;
     NameServer &nameServer;
+    uCondition productionLock;
+    unsigned int *generatedStock;
     unsigned int maxShippedPerFlavour;
     unsigned int maxStockPerFlavour;
     unsigned int timeBetweenShipments;
