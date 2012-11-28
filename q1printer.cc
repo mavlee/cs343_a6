@@ -78,9 +78,9 @@ void Printer::print( Kind kind, char state, int value1 ) {
  ***************************/
 void Printer::print( Kind kind, char state, int value1, int value2 ) {
   // if state is already there, print before storing
-  if (status[id] != '\0')
+  if (status[kind] != '\0')
     displayStatus();
-  status[id] = state;
+  status[kind] = state;
   statusValues[kind][0] = value1;
   statusValues[kind][1] = value2;
 }
@@ -124,12 +124,19 @@ void Printer::print( Kind kind, unsigned int lid, char state, int value1 ) {
  *            value2 - the second status value
  ***************************/
 void Printer::print( Kind kind, unsigned int lid, char state, int value1, int value2 ) {
+  unsigned int id = 5;
+  if (kind == Student)
+    id += lid;
+  else if (kind == Vending)
+    id += numStudents + lid;
+  else if (kind == Courier)
+    id += numStudents + numVendingMachines + lid;
   // if state is already there, print before storing
   if (status[id] != '\0')
     displayStatus();
   status[id] = state;
-  statusValues[lid][0] = value1;
-  statusValues[lid][1] = value2;
+  statusValues[id][0] = value1;
+  statusValues[id][1] = value2;
 }
 
 /********* displayStatus ************
