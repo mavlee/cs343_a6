@@ -7,6 +7,7 @@
 Parent::Parent( Printer &prt, Bank &bank, unsigned int numStudents, unsigned int parentalDelay ) : printer(prt), bank(bank) {
   this->numStudents = numStudents;
   this->parentalDelay = parentalDelay;
+  printer.print(Printer::Parent, 'S');
 }
 
 void Parent::main() {
@@ -18,6 +19,11 @@ void Parent::main() {
       unsigned int student = rng(numStudents);
       yield(parentalDelay);
       bank.deposit(student, money);
+      printer.print(Printer::Parent, 'D', student, money);
     }
   }
+}
+
+Parent::~Parent() {
+  printer.print(Printer::Parent, 'F');
 }
