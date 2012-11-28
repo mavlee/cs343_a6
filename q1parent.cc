@@ -9,6 +9,9 @@ Parent::Parent( Printer &prt, Bank &bank, unsigned int numStudents, unsigned int
   this->parentalDelay = parentalDelay;
   printer.print(Printer::Parent, 'S');
 }
+Parent::~Parent() {
+  printer.print(Printer::Parent, 'F');
+}
 
 void Parent::main() {
   while (true) {
@@ -24,6 +27,4 @@ void Parent::main() {
   }
 }
 
-Parent::~Parent() {
-  printer.print(Printer::Parent, 'F');
-}
+
