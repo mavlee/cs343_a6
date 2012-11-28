@@ -13,26 +13,41 @@ VendingMachine::VendingMachine( Printer &prt, NameServer &nameServer,
   // init stock
   stock = new unsigned int[4];
   for (unsigned int i = 0; i < 4; i++)
-    stock[i] = '0';
+    stock[i] = 0;
+
+  nameServer.VMregister(this);
+
+  stocking = false;
 }
 
 VendingMachine::Status VendingMachine::buy(Flavours flavour, WATCard &card) {
-  if (stock[flavour] == 0)
-    return STOCK;
   if (card.getBalance() < sodaCost)
     return FUNDS;
+  if (stock[flavour] == 0)
+    return STOCK;
+  stock[flavour]--;
   return BUY;
 }
 
 void VendingMachine::main() {
+  while (1) {
+    _Accept(~VendingMachine) {
+      break;
+    } _When(!stocking) _Accept(buy) {
+
+    } else {
+
+    }
+  }
 }
 
 unsigned int* VendingMachine::inventory() {
+  stocking = true;
   return stock;
 }
 
 void VendingMachine::restocked() {
-
+  stocking = false;
 }
 
 unsigned int VendingMachine::cost() {
