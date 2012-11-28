@@ -162,8 +162,8 @@ void Printer::displayStatus() {
   // reset all the statuses
   for (unsigned int i = 0; i < numObjects; i++) {
     status[i] = '\0';
-    statusValues[i][0] = 0;
-    statusValues[i][1] = 0;
+    statusValues[i][0] = -1;
+    statusValues[i][1] = -1;
   }
 }
 
