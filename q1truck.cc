@@ -2,6 +2,7 @@
 #include "q1printer.h"
 #include "q1nameserver.h"
 #include "q1bottlingplant.h"
+#include "q1vendingmachine.h"
 #include "q1truck.h"
 #include "MPRNG.h"
 
@@ -10,11 +11,55 @@ Truck::Truck( Printer &prt, NameServer &nameServer, BottlingPlant &plant,
       nameServer(nameServer), bottlingPlant(plant) {
   this->numVendingMachines = numVendingMachines;
   this->maxStockPerFlavour = maxStockPerFlavour;
+
+  // 4 different flavours of soda
+  inventory = new unsigned int[4];
+  for (unsigned int i = 0; i < 4; i++)
+    inventory[i] = 0;
+  currentMachine = 0;
 }
+
+bool Truck::hasCargo() {
+  for (unsigned int i = 0; i < 4; i++)
+    if (inventory[i] > 0)
+      return true;
+  return false;
+}
+
 
 void Truck::main() {
   // fill this stuff out
   printer.print(Printer::Truck, 'S');
+  machines = nameServer.getMachineList();
+  unsigned int startingMachine = 0;
+
+  while (true) {
+    yield(rng(1, 10));
+    bool isPlantClosing = bottlingPlant.getShipment(inventory);
+    if (isPlantClosing)
+      break;
+
+    // stock machines
+    startingMachine = currentMachine;
+    do {
+      unsigned int *machineStock = machines[currentMachine]->inventory();
+
+      // 4 sodas
+      for (unsigned int i = 0; i < 4; i++) {
+        machineStock[i] += inventory[i];
+        inventory[i] = 0;
+        if (machineStock[i] > maxStockPerFlavour) {
+          inventory[i] = machineStock[i] - maxStockPerFlavour;
+          machineStock[i] = maxStockPerFlavour;
+        }
+      }
+
+      if (currentMachine == numVendingMachines - 1)
+        currentMachine = 0;
+      else
+        currentMachine++;
+    } while (hasCargo() && startingMachine != currentMachine);
+  }
 
   printer.print(Printer::Truck, 'F');
 }

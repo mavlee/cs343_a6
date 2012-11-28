@@ -7,6 +7,7 @@
 _Monitor Printer;
 _Task NameServer;
 _Task BottlingPlant;
+_Task VendingMachine;
 
 _Task Truck {
   private:
@@ -15,6 +16,10 @@ _Task Truck {
     BottlingPlant &bottlingPlant;
     unsigned int numVendingMachines;
     unsigned int maxStockPerFlavour;
+    VendingMachine **machines;
+    unsigned int *inventory;
+    unsigned int currentMachine;
+    bool hasCargo();
     void main();
   public:
   Truck( Printer &prt, NameServer &nameServer, BottlingPlant &plant,
