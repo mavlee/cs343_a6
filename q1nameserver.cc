@@ -6,29 +6,37 @@
 NameServer::NameServer( Printer &prt, unsigned int numVendingMachines, unsigned int numStudents ) : printer(prt) {
   this->numVendingMachines = numVendingMachines;
   this->numStudents = numStudents;
-  //machines = new VendingMachine *[numVendingMachines];
+  machineCount = 0;
+  machines = new VendingMachine *[numVendingMachines];
 }
 
 void NameServer::VMregister( VendingMachine *vendingmachine ) {
-  //machines[0] = vendingmachine;
+  machines[machineCount] = vendingmachine;
+  machineCount++;
 }
 
-VendingMachine NameServer::*getMachine( unsigned int id ) {
-  //return machines[0];
+VendingMachine* NameServer::getMachine( unsigned int id ) {
+  return machines[id % (machineCount+1)];
 }
 
-VendingMachine NameServer::**getMachineList() {
-  //return machines;
+VendingMachine** NameServer::getMachineList() {
+  return machines;
 }
 
 void NameServer::main() {
+  while (1) {
+    _Accept(~NameServer) {
+      break;
+    } else {
 
+    }
+  }
 }
 
 NameServer::~NameServer() {
-  /*
+
   for (unsigned int i = 0; i < numVendingMachines; i++)
     delete machines[i];
   delete machines;
-  */
+
 }

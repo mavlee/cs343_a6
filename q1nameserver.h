@@ -12,8 +12,8 @@ _Task NameServer {
     Printer &printer;
     unsigned int numVendingMachines;
     unsigned int numStudents;
+    unsigned int machineCount;
     VendingMachine **machines;
-    unsigned int *inventory;
   public:
     NameServer( Printer &prt, unsigned int numVendingMachines, unsigned int numStudents );
     void VMregister( VendingMachine *vendingmachine );
