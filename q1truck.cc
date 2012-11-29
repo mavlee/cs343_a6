@@ -60,6 +60,7 @@ void Truck::main() {
           machineStock[i] = maxStockPerFlavour;
         }
       }
+      machines[currentMachine]->restocked();
       // todo: fix this output
       printer.print(Printer::Truck, 'U', currentMachine, 0);
 
