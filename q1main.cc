@@ -83,34 +83,25 @@ void uMain::main() {
     machines[i] = new VendingMachine(printer, *nameServer, i, params.sodaCost, params.maxStockPerFlavour);
 
   for (i = 0; i < params.numStudents; i++)
-  {
     delete students[i];
-  }
-  printf("dead\n");
+  printf("deleted students\n");
 
-  for (i = 0; i < params.numVendingMachines; i++)
-  {
-    printf("killed %d machines\n", i);
+  for (i = 0; i < params.numVendingMachines; i++) {
     delete machines[i];
+    printf("killed %d machines\n", i);
   }
-  printf("dead\n");
 
   delete bottlingPlant;
-  printf("dead\n");
+  printf("delete bottling plant\n");
 
   delete parent;
-  printf("dead\n");
+  printf("delete parent\n");
   delete bank;
-  printf("dead\n");
+  printf("delete bank\n");
 
   delete office;
-  printf("dead\n");
+  printf("delete office\n");
 
   delete nameServer;
-  printf("dead\n");
-
-  delete bottlingPlant;
-  printf("dead\n");
-
-  // delete stuff other
+  printf("delete nameserver\n");
 }

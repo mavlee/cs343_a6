@@ -67,9 +67,8 @@ void Truck::main() {
         sodasLeft += inventory[i];
       }
       machines[currentMachine]->restocked();
-      // todo: fix this output
-      printer.print(Printer::Truck, 'U', currentMachine, sodasMissing);
 
+      printer.print(Printer::Truck, 'U', currentMachine, sodasMissing);
       printer.print(Printer::Truck, 'D', currentMachine, sodasLeft);
 
       if (currentMachine == numVendingMachines - 1)
