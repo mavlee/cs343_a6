@@ -20,6 +20,7 @@ void WATCardOffice::Courier::main() {
       printer.print(Printer::Courier, id, 't', sid, amount);
       if (task->args.type == Create) {            // This syntax is pretty ugly
           WATCard *card = new WATCard();
+          bank.withdraw(sid, 5);
           card->deposit(5);
           task->result.delivery(card);
       } else if (task->args.type == Transfer) {
