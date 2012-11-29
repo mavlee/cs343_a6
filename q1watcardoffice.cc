@@ -79,7 +79,6 @@ WATCardOffice::~WATCardOffice() {
 }
 
 void WATCardOffice::main() {
-
   while (true) {
     _Accept(~WATCardOffice) {
       Args args = {Destroy, 0, 0, NULL};
@@ -93,10 +92,8 @@ void WATCardOffice::main() {
     } or _Accept(create) {
     } or _Accept(transfer) {
     } or _Accept(requestWork) {
-    }else {
     }
   }
-
 }
 
 FWATCard WATCardOffice::create(unsigned int sid, unsigned int amount) {
@@ -115,14 +112,13 @@ FWATCard WATCardOffice::transfer(unsigned int sid, unsigned int amount, WATCard 
   jobQueue.push_back(task);
   if (!jobCond.empty())
     jobCond.signal();
-  printer.print(Printer::WATCardOffice, 'c', sid, amount);
+  printer.print(Printer::WATCardOffice, 'T', sid, amount);
   return task->result;
 }
 
 WATCardOffice::Job* WATCardOffice::requestWork(){
-  if (jobQueue.empty()) {
+  if (jobQueue.empty())
     jobCond.wait();
-  }
   Job* task = jobQueue[0];
   if (task->args.type != Destroy)
     printer.print(Printer::WATCardOffice, 'W');
