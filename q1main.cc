@@ -86,15 +86,31 @@ void uMain::main() {
   {
     delete students[i];
   }
+  printf("dead\n");
+
   for (i = 0; i < params.numVendingMachines; i++)
   {
+    printf("killed %d machines\n", i);
     delete machines[i];
   }
+  printf("dead\n");
+
+  delete bottlingPlant;
+  printf("dead\n");
 
   delete parent;
+  printf("dead\n");
   delete bank;
+  printf("dead\n");
+
   delete office;
+  printf("dead\n");
+
   delete nameServer;
+  printf("dead\n");
+
   delete bottlingPlant;
+  printf("dead\n");
+
   // delete stuff other
 }
