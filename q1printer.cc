@@ -145,8 +145,7 @@ void Printer::print( Kind kind, unsigned int lid, char state, int value1, int va
  * Returns: void
  ***************************/
 void Printer::displayStatus() {
-  // fill out later
-
+  // print the status, decide how many numbers to display based on if they are >= 0
   for (unsigned int i = 0; i < numObjects; i++) {
     if (status[i] == '\0')
       printf("\t");

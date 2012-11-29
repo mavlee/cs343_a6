@@ -5,12 +5,12 @@
 
 _Monitor Printer {
   private:
-    unsigned int numObjects;
-    unsigned int numStudents;
-    unsigned int numVendingMachines;
-    unsigned int numCouriers;
-    char *status;                 // holds the state type
-    int **statusValues; // holds the values for various states
+    unsigned int numObjects;          // combined total of students, vending machines, couriers
+    unsigned int numStudents;         // number of students
+    unsigned int numVendingMachines;  // number of vending machines
+    unsigned int numCouriers;         // number of couriers
+    char *status;                     // holds the state type
+    int **statusValues;               // holds the values for various states
   public:
     enum Kind { Parent, WATCardOffice, NameServer, Truck, BottlingPlant, Student, Vending, Courier };
     Printer( unsigned int numStudents, unsigned int numVendingMachines, unsigned int numCouriers );
