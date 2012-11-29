@@ -83,10 +83,18 @@ void uMain::main() {
     machines[i] = new VendingMachine(printer, *nameServer, i, params.sodaCost, params.maxStockPerFlavour);
 
   for (i = 0; i < params.numStudents; i++)
+  {
     delete students[i];
-
+  }
   for (i = 0; i < params.numVendingMachines; i++)
+  {
     delete machines[i];
+  }
 
+  delete parent;
+  delete bank;
+  delete office;
+  delete nameServer;
+  delete bottlingPlant;
   // delete stuff other
 }
