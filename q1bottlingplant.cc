@@ -36,9 +36,9 @@ void BottlingPlant::main() {
   Truck truck(printer, nameServer, *this, numVendingMachines, maxStockPerFlavour);
 
   while (true) {
-    _Accept(~BottlingPlant) {
-      break;
-    } else {
+    // _Accept(~BottlingPlant) {
+    //   break;
+    // } else {
       yield(timeBetweenShipments);
 
       // produce soda
@@ -51,6 +51,6 @@ void BottlingPlant::main() {
       printer.print(Printer::BottlingPlant, 'G', totalProduction);
       productionLock.wait();
     }
-  }
+  //}
   printer.print(Printer::BottlingPlant, 'F');
 }
