@@ -124,7 +124,8 @@ WATCardOffice::Job* WATCardOffice::requestWork(){
     jobCond.wait();
   }
   Job* task = jobQueue[0];
-  printer.print(Printer::WATCardOffice, 'W');
+  if (task->args.type != Destroy)
+    printer.print(Printer::WATCardOffice, 'W');
   jobQueue.erase(jobQueue.begin());
   return task;
 }
