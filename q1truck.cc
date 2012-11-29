@@ -52,8 +52,8 @@ void Truck::main() {
     // stock machines
     startingMachine = currentMachine;
     do {
-      printer.print(Printer::Truck, 'd', currentMachine, inventory[0] + inventory[1] + inventory[2] + inventory[3]);
       unsigned int *machineStock = machines[currentMachine]->inventory();
+      printer.print(Printer::Truck, 'd', currentMachine, inventory[0] + inventory[1] + inventory[2] + inventory[3]);
       bool successful = true;
       int sodasMissing = 0;
       int sodasLeft = 0;
@@ -70,13 +70,12 @@ void Truck::main() {
         }
         sodasLeft += inventory[i];
       }
-      machines[currentMachine]->restocked();
-
       if (!successful)
         printer.print(Printer::Truck, 'U', currentMachine, sodasMissing);
 
       printer.print(Printer::Truck, 'D', currentMachine, sodasLeft);
 
+      machines[currentMachine]->restocked();
       if (currentMachine == numVendingMachines - 1)
         currentMachine = 0;
       else
