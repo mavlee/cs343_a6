@@ -2,10 +2,12 @@
 #include "q1printer.h"
 #include "q1bank.h"
 #include "q1watcardoffice.h"
+#include <iostream>
 
 void WATCardOffice::Courier::main() {
-  while(true) {
+  while (true) {
     _Accept(~Courier) {
+      printf("omg in courier finish?\n");
       break;
     } else {
       // Doesn't work yet, delete next two lines later
@@ -54,6 +56,7 @@ WATCardOffice::WATCardOffice( Printer &prt, Bank &bank, unsigned int numCouriers
 }
 
 WATCardOffice::~WATCardOffice() {
+  printf("omg in watcard finish?\n");
   for (unsigned int i = 0; i < numCouriers; i++)
     delete couriers[i];
   delete couriers;
@@ -61,13 +64,14 @@ WATCardOffice::~WATCardOffice() {
 }
 
 void WATCardOffice::main() {
-  //while (true) {
-    // _Accept(~WATCardOffice) {
-    //   break;
-    // } else {
-
-    // }
-  //}
+  /*
+  while (true) {
+    _Accept(~WATCardOffice) {
+      break;
+    } else {
+    }
+  }
+  */
 }
 
 FWATCard WATCardOffice::create(unsigned int sid, unsigned int amount) {
