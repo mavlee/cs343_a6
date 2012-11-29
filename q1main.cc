@@ -43,7 +43,7 @@ void uMain::main() {
 
   // read in command line arguments
   if (argc > 1)
-    configFile = atoi(argv[1]);
+    configFile = argv[1];
   if (argc > 2)
     seed = atoi(argv[2]);
   if (argc > 3) usage(argv);
