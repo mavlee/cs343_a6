@@ -37,15 +37,6 @@ VendingMachine::Status VendingMachine::buy(Flavours flavour, WATCard &card) {
 }
 
 void VendingMachine::main() {
-  // while (1) {
-  //   _Accept(~VendingMachine) {
-  //     break;
-  //   } or _When(!stocking) _Accept(buy) {
-
-  //   } else {
-
-  //   }
-  // }
 }
 
 unsigned int* VendingMachine::inventory() {
