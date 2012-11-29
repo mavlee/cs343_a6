@@ -3,7 +3,7 @@
 
 /********** Bank ***********
  * Purpose: constructor for bank
- * Returns: Bank
+ * Returns: void
  * Arguments: numStudents - number of students
  ***************************/
 Bank::Bank( unsigned int numStudents ) {
@@ -18,7 +18,7 @@ Bank::Bank( unsigned int numStudents ) {
 /********* ~Bank ***********
  * Purpose: destructor for bank; frees allocated objects
  * Returns: void
- * Arguments:
+ * Arguments: none
  ***************************/
 Bank::~Bank() {
   delete [] amounts;
@@ -29,7 +29,7 @@ Bank::~Bank() {
  * Purpose: deposits money from a student's account
  * Returns: void
  * Arguments: id - id of student's account
-              amount - amount to deposit
+ *            amount - amount to deposit
  ***************************/
 void Bank::deposit( unsigned int id, unsigned int amount ) {
   amounts[id] += amount;
@@ -39,10 +39,10 @@ void Bank::deposit( unsigned int id, unsigned int amount ) {
 
 /******** withdraw **********
  * Purpose: withdraws money from a student's account, blocks on
-            insufficient funds
+ *          insufficient funds
  * Returns: void
  * Arguments: id - id of student's account
-              amount - amount to withdraw
+ *            amount - amount to withdraw
  ***************************/
 void Bank::withdraw( unsigned int id, unsigned int amount ) {
   while(amounts[id] < amount) {

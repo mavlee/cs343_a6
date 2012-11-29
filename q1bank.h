@@ -5,9 +5,9 @@
 
 _Monitor Bank {
   private:
-    unsigned int *amounts;
-    unsigned int numStudents;
-    uCondition *noMoney;
+    unsigned int *amounts;    // holds the balance for each student
+    unsigned int numStudents; // the number of students
+    uCondition *noMoney;      // array of conditions when a student has no money
   public:
     Bank( unsigned int numStudents );
     ~Bank();

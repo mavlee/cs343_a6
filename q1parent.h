@@ -9,10 +9,10 @@ _Monitor Bank;
 
 _Task Parent {
   private:
-    Printer &printer;
-    Bank &bank;
-    unsigned int numStudents;
-    unsigned int parentalDelay;
+    Printer &printer;           // printer
+    Bank &bank;                 // bank
+    unsigned int numStudents;   // number of students
+    unsigned int parentalDelay; // delay before the parent gives more monies
     void main();
   public:
     Parent( Printer &prt, Bank &bank, unsigned int numStudents, unsigned int parentalDelay );
