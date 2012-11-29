@@ -36,9 +36,6 @@ _Task WATCardOffice {
         Courier(Bank &bank, Printer &prt, WATCardOffice *office, unsigned int cid);
         ~Courier();
     };      // communicates with bank
-
-
-  private:
     Printer &printer;
     Bank &bank;
     unsigned int numCouriers;
@@ -50,7 +47,7 @@ _Task WATCardOffice {
     void main();
 
   public:
-    //_Event Lost {};
+    _Event Lost {};
 
     WATCardOffice( Printer &prt, Bank &bank, unsigned int numCouriers );
     ~WATCardOffice();

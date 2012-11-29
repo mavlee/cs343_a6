@@ -2,6 +2,7 @@
 #include "q1printer.h"
 #include "q1bank.h"
 #include "q1watcardoffice.h"
+#include "MPRNG.h"
 #include <iostream>
 
 void WATCardOffice::Courier::main() {
@@ -14,23 +15,37 @@ void WATCardOffice::Courier::main() {
         delete task;
         break;
       }
-
       unsigned int sid = task->args.sid;
       unsigned int amount = task->args.amount;
+      WATCard *card = NULL;
 
       // TODO: Simulate lost card
       printer.print(Printer::Courier, id, 't', sid, amount);
       if (task->args.type == Create) {            // This syntax is pretty ugly
-          WATCard *card = new WATCard();
+          card = new WATCard();
           bank.withdraw(sid, 5);
           card->deposit(5);
-          task->result.delivery(card);
       } else if (task->args.type == Transfer) {
           bank.withdraw(sid, amount);             // Block here until funds are available
           task->args.card->deposit(amount);
-          task->result.delivery(task->args.card);
       }
-      printer.print(Printer::Courier, id, 'T', sid, amount);
+
+      int fail = rng(5);
+      if (fail == 0) {
+        if (task->args.card != NULL)
+          delete task->args.card;
+        if (card != NULL)
+          delete card;
+        task->result.exception( new Lost );
+      } else {
+        if (task->args.card != NULL) {
+          task->result.delivery(task->args.card);
+        } else if (card != NULL) {
+          task->result.delivery(card);
+        }
+        printer.print(Printer::Courier, id, 'T', sid, amount);
+
+      }
       delete task;
     }
   }
