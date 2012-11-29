@@ -18,6 +18,7 @@ _Task VendingMachine {
     unsigned int *stock;
 
     bool stocking;
+    uCondition stockLock;
 
     void main();
   public:

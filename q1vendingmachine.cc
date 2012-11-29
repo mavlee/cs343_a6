@@ -23,8 +23,8 @@ VendingMachine::VendingMachine( Printer &prt, NameServer &nameServer,
 }
 
 VendingMachine::Status VendingMachine::buy(Flavours flavour, WATCard &card) {
-  // while(stocking)
-  //   stockCond.wait();
+  if (stocking)
+    stockLock.wait();
 
   if (card.getBalance() < sodaCost)
     return FUNDS;
@@ -47,6 +47,8 @@ unsigned int* VendingMachine::inventory() {
 
 void VendingMachine::restocked() {
   stocking = false;
+  while (!stockLock.empty())
+    stockLock.signal();
   printer.print(Printer::Vending, id, 'R');
 }
 
