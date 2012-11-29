@@ -32,4 +32,5 @@ void Student::main() {
       purchasesLeft--;
     }
   }
+  printer.print(Printer::Student, id, 'F');
 }
