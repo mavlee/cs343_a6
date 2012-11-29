@@ -19,12 +19,13 @@ void WATCardOffice::Courier::main() {
       // TODO: Simulate lost card
       printer.print(Printer::Courier, id, 't', sid, amount);
       if (task->args.type == Create) {            // This syntax is pretty ugly
-          //printf("creating new watcard\n");
-          task->args.card = new WATCard();
-          task->args.card->deposit(5);
+          WATCard *card = new WATCard();
+          card->deposit(5);
+          task->result.delivery(card);
       } else if (task->args.type == Transfer) {
           bank.withdraw(sid, amount);             // Block here until funds are available
           task->args.card->deposit(amount);
+          task->result.delivery(task->args.card);
       }
       printer.print(Printer::Courier, id, 'T', sid, amount);
     }
