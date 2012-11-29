@@ -15,7 +15,7 @@ VendingMachine::VendingMachine( Printer &prt, NameServer &nameServer,
   for (unsigned int i = 0; i < 4; i++)
     stock[i] = 0;
 
-  printer.print(Printer::Vending, id, 'S');
+  printer.print(Printer::Vending, id, 'S', sodaCost);
 
   nameServer.VMregister(this);
 
