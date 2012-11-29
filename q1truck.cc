@@ -48,7 +48,7 @@ void Truck::main() {
     // stock machines
     startingMachine = currentMachine;
     do {
-      printer.print(Printer::Truck, 'd');
+      printer.print(Printer::Truck, 'd', currentMachine, inventory[0] + inventory[1] + inventory[2] + inventory[3]);
       unsigned int *machineStock = machines[currentMachine]->inventory();
       bool successful = true;
       int sodasMissing = 0;
