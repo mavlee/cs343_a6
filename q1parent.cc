@@ -19,7 +19,7 @@ void Parent::main() {
       break;
     } else {
       unsigned int money = rng(1,3);
-      unsigned int student = rng(numStudents);
+      unsigned int student = rng(numStudents-1);
       yield(parentalDelay);
       bank.deposit(student, money);
       printer.print(Printer::Parent, 'D', student, money);
