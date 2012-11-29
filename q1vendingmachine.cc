@@ -30,6 +30,7 @@ VendingMachine::Status VendingMachine::buy(Flavours flavour, WATCard &card) {
     return FUNDS;
   if (stock[flavour] == 0)
     return STOCK;
+  card.withdraw(sodaCost);
   stock[flavour]--;
   printer.print(Printer::Vending, id, 'B', flavour, stock[flavour]);
   return BUY;
