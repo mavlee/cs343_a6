@@ -16,6 +16,7 @@ _Task BottlingPlant {
     unsigned int maxStockPerFlavour;
     unsigned int timeBetweenShipments;
     unsigned int numVendingMachines;
+    bool plantClosing;
     void main();
   public:
     BottlingPlant( Printer &prt, NameServer &nameServer, unsigned int numVendingMachines,

@@ -86,13 +86,13 @@ void uMain::main() {
     delete students[i];
   printf("deleted students\n");
 
+  delete bottlingPlant;
+  printf("delete bottling plant\n");
+
   for (i = 0; i < params.numVendingMachines; i++) {
     delete machines[i];
     printf("killed %d machines\n", i);
   }
-
-  delete bottlingPlant;
-  printf("delete bottling plant\n");
 
   delete parent;
   printf("delete parent\n");

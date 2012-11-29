@@ -16,7 +16,7 @@ Parent::~Parent() {
 void Parent::main() {
   while (true) {
     _Accept (~Parent) {
-
+      break;
     } else {
       unsigned int money = rng(1,3);
       unsigned int student = rng(numStudents-1);
