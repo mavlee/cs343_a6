@@ -50,21 +50,28 @@ void Truck::main() {
     do {
       printer.print(Printer::Truck, 'd');
       unsigned int *machineStock = machines[currentMachine]->inventory();
-
+      bool successful = false;
+      int sodasMissing = 0;
+      int sodasLeft = 0;
       // 4 sodas
       for (unsigned int i = 0; i < 4; i++) {
         machineStock[i] += inventory[i];
         inventory[i] = 0;
-        if (machineStock[i] > maxStockPerFlavour) {
+        if (machineStock[i] >= maxStockPerFlavour) {
           inventory[i] = machineStock[i] - maxStockPerFlavour;
           machineStock[i] = maxStockPerFlavour;
+          successful = true;
+        } else {
+          sodasMissing += maxStockPerFlavour - machineStock[i];
         }
+        sodasLeft += inventory[i];
       }
       machines[currentMachine]->restocked();
       // todo: fix this output
-      printer.print(Printer::Truck, 'U', currentMachine, 0);
+      printer.print(Printer::Truck, 'U', currentMachine, sodasMissing);
 
-      printer.print(Printer::Truck, 'D', currentMachine, 0);
+      printer.print(Printer::Truck, 'D', currentMachine, sodasLeft);
+
       if (currentMachine == numVendingMachines - 1)
         currentMachine = 0;
       else
