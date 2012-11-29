@@ -10,7 +10,6 @@ _Monitor Printer;
 _Monitor Bank;
 
 _Task WATCardOffice {
-  private:
     enum JobType {Create, Transfer};
 
     typedef struct {
@@ -20,7 +19,6 @@ _Task WATCardOffice {
       WATCard *card;
       // some arguments
     } Args;
-
     struct Job {        // marshalled arguments and return future
       Args args;        // call arguments (YOU DEFINE "Args")
       FWATCard result;      // return future
@@ -31,17 +29,21 @@ _Task WATCardOffice {
       private:
         Bank &bank;
         Printer &printer;
+        WATCardOffice *office;
         unsigned int id;
         void main();
       public:
-        Courier(Bank &bank, Printer &prt, unsigned int cid);
+        Courier(Bank &bank, Printer &prt, WATCardOffice *office, unsigned int cid);
         ~Courier();
     };      // communicates with bank
 
+
+  private:
     Printer &printer;
     Bank &bank;
     unsigned int numCouriers;
     Courier **couriers;
+    uCondition jobCond;
 
     std::vector<Job*> jobQueue;
 
@@ -49,11 +51,12 @@ _Task WATCardOffice {
 
   public:
     //_Event Lost {};
+
     WATCardOffice( Printer &prt, Bank &bank, unsigned int numCouriers );
     ~WATCardOffice();
     FWATCard create( unsigned int sid, unsigned int amount );
     FWATCard transfer( unsigned int sid, unsigned int amount, WATCard *card );
-    //Job *requestWork();
+    Job *requestWork();
 };
 
 #endif
