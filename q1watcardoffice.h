@@ -10,7 +10,7 @@ _Monitor Printer;
 _Monitor Bank;
 
 _Task WATCardOffice {
-    enum JobType {Create, Transfer};
+    enum JobType {Create, Transfer, Destroy};
 
     typedef struct {
       JobType type;

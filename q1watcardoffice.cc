@@ -7,13 +7,12 @@
 void WATCardOffice::Courier::main() {
   while (true) {
     _Accept(~Courier) {
-      printf("omg in courier finish?\n");
       break;
     } else {
-      // Doesn't work yet, delete next two lines later
       Job *task = office->requestWork();
-      //Args testArgs = {Transfer, 0, 10, new WATCard()};
-      //Job *task = new Job(testArgs);
+      if (task->args.type == Destroy) {
+        break;
+      }
 
       unsigned int sid = task->args.sid;
       unsigned int amount = task->args.amount;
@@ -56,7 +55,6 @@ WATCardOffice::WATCardOffice( Printer &prt, Bank &bank, unsigned int numCouriers
 }
 
 WATCardOffice::~WATCardOffice() {
-  printf("omg in watcard finish?\n");
   for (unsigned int i = 0; i < numCouriers; i++)
     delete couriers[i];
   delete couriers;
@@ -64,14 +62,23 @@ WATCardOffice::~WATCardOffice() {
 }
 
 void WATCardOffice::main() {
-  /*
+
   while (true) {
     _Accept(~WATCardOffice) {
+      Args args = {Destroy, 0, 0, NULL};
+      while(!jobCond.empty()) {
+        Job *task = new Job(args);
+        jobQueue.push_back(task);
+        jobCond.signal();
+      }
       break;
-    } else {
+    } or _Accept(create) {
+    } or _Accept(transfer) {
+    } or _Accept(requestWork) {
+    }else {
     }
   }
-  */
+
 }
 
 FWATCard WATCardOffice::create(unsigned int sid, unsigned int amount) {
@@ -95,8 +102,9 @@ FWATCard WATCardOffice::transfer(unsigned int sid, unsigned int amount, WATCard 
 }
 
 WATCardOffice::Job* WATCardOffice::requestWork(){
-  if (jobQueue.empty())
+  if (jobQueue.empty()) {
     jobCond.wait();
+  }
   Job* task = jobQueue[0];
   printer.print(Printer::WATCardOffice, 'W');
   jobQueue.erase(jobQueue.begin());
