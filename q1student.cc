@@ -32,5 +32,6 @@ void Student::main() {
       purchasesLeft--;
     }
   }
+  delete card;
   printer.print(Printer::Student, id, 'F');
 }

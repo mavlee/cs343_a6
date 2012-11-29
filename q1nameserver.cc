@@ -39,8 +39,8 @@ void NameServer::main() {
 }
 
 NameServer::~NameServer() {
-  //for (unsigned int i = 0; i < numVendingMachines; i++)
+  // for (unsigned int i = 0; i < numVendingMachines; i++)
   //  delete machines[i];
-  //delete machines;
+  delete machines;
   printer.print(Printer::NameServer, 'F');
 }

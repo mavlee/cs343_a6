@@ -11,6 +11,7 @@ void WATCardOffice::Courier::main() {
     } else {
       Job *task = office->requestWork();
       if (task->args.type == Destroy) {
+        delete task;
         break;
       }
 
@@ -30,6 +31,7 @@ void WATCardOffice::Courier::main() {
           task->result.delivery(task->args.card);
       }
       printer.print(Printer::Courier, id, 'T', sid, amount);
+      delete task;
     }
   }
 }
@@ -68,6 +70,7 @@ void WATCardOffice::main() {
       Args args = {Destroy, 0, 0, NULL};
       while(!jobCond.empty()) {
         Job *task = new Job(args);
+
         jobQueue.push_back(task);
         jobCond.signal();
       }

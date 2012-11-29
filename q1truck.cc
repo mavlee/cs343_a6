@@ -19,6 +19,10 @@ Truck::Truck( Printer &prt, NameServer &nameServer, BottlingPlant &plant,
   currentMachine = 0;
 }
 
+Truck::~Truck() {
+  delete inventory;
+}
+
 bool Truck::hasCargo() {
   for (unsigned int i = 0; i < 4; i++)
     if (inventory[i] > 0)

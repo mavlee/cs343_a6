@@ -34,6 +34,10 @@ bool BottlingPlant::getShipment( unsigned int cargo[] ) {
   return false;
 }
 
+BottlingPlant::~BottlingPlant() {
+  delete generatedStock;
+}
+
 void BottlingPlant::main() {
   unsigned int totalProduction = 0;
   printer.print(Printer::BottlingPlant, 'S');
