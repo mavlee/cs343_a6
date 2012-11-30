@@ -18,6 +18,6 @@ struct ConfigParams {
 };
 
 void processConfigFile( const char *configFile, ConfigParams &cParams);
-bool matchParameter(string line, string paramName);
+bool matchParameter(std::string line, std::string paramName);
 
 #endif
