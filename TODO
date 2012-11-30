@@ -1,16 +1,5 @@
-file input stuff
+comment:
+watcard office
+name server
 
-preliminary setup for
-student
-watcard
-watcardoffice
-vendingmachine
-nameserver
-bottlingplant
-truck
-printer
-
-WATCardOffice:
-- get requestWork to work
-- simulate missing card
-- test
+testing documentation

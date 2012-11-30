@@ -9,18 +9,16 @@ _Task WATCardOffice;
 _Task NameServer;
 
 _Task Student {
-  void main();
-
-  unsigned int id;
-  unsigned int purchasesLeft;
-  unsigned int favFlavour;
-
-  Printer &printer;
-  NameServer &nameServer;
-  WATCardOffice &office;
-
+  private:
+    Printer &printer;           // printer
+    NameServer &nameServer;     // name server
+    WATCardOffice &office;      // watcard office
+    unsigned int id;            // student's id
+    unsigned int purchasesLeft; // how many more sodas to buy
+    unsigned int favFlavour;    // the student's favourite flavour
+    void main();                // main function
   public:
-  Student( Printer &prt, NameServer &nameServer, WATCardOffice &cardOffice, unsigned int id,
+    Student( Printer &prt, NameServer &nameServer, WATCardOffice &cardOffice, unsigned int id,
       unsigned int maxPurchases );
 };
 

@@ -10,17 +10,17 @@ class WATCard;
 
 _Task VendingMachine {
   private:
-    Printer &printer;
-    NameServer &nameServer;
-    unsigned int id;
-    unsigned int sodaCost;
-    unsigned int maxStockPerFlavour;
-    unsigned int *stock;
+    Printer &printer;                 // printer
+    NameServer &nameServer;           // name server
+    unsigned int id;                  // machine id
+    unsigned int sodaCost;            // soda cost
+    unsigned int maxStockPerFlavour;  // maximum of each type of soda
+    unsigned int *stock;              // array holding amount of soda
 
-    bool stocking;
-    uCondition stockLock;
+    bool stocking;                    // whether or not the machine is being stocked at the moment
+    uCondition stockLock;             // lock to enforce machine not selling soda
 
-    void main();
+    void main();                      // main function
   public:
     enum Flavours { BlackCherry, CreamSoda, RootBeer, Lime };      // flavours of soda (YOU DEFINE)
     enum Status { BUY, STOCK, FUNDS };    // purchase status: successful buy, out of stock, insufficient funds
