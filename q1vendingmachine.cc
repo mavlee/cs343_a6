@@ -36,6 +36,7 @@ VendingMachine::VendingMachine( Printer &prt, NameServer &nameServer,
  *            card - the watcard from which to get money
  ***************************/
 VendingMachine::Status VendingMachine::buy(Flavours flavour, WATCard &card) {
+  // block on stocking
   if (stocking)
     stockLock.wait();
 
@@ -63,6 +64,7 @@ void VendingMachine::main() {
  * Arguments: none
  ***************************/
 unsigned int* VendingMachine::inventory() {
+  //set flag to block buyers
   stocking = true;
   printer.print(Printer::Vending, id, 'r');
   return stock;
@@ -74,6 +76,7 @@ unsigned int* VendingMachine::inventory() {
  * Arguments: none
  ***************************/
 void VendingMachine::restocked() {
+  // unblock buyers
   stocking = false;
   while (!stockLock.empty())
     stockLock.signal();

@@ -9,12 +9,12 @@ _Monitor Printer;
 _Task NameServer {
   private:
     void main();
-    Printer &printer;
-    unsigned int numVendingMachines;
-    unsigned int numStudents;
-    unsigned int machineCount;
-    int assignedCount;
-    VendingMachine **machines;
+    Printer &printer;                       // printer
+    unsigned int numVendingMachines;        // number of machines
+    unsigned int numStudents;               // number of students
+    unsigned int machineCount;              // number of machines registered
+    int assignedCount;                      // number of machines assigned
+    VendingMachine **machines;              // array of machines
   public:
     NameServer( Printer &prt, unsigned int numVendingMachines, unsigned int numStudents );
     void VMregister( VendingMachine *vendingmachine );
