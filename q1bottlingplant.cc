@@ -85,6 +85,7 @@ void BottlingPlant::main() {
       _Accept(getShipment);
       break;
     } or _Accept(getShipment) {
+      // only generate more soda after a truck gets the shipment
       yield(timeBetweenShipments);
 
       // produce soda
