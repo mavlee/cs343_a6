@@ -1,0 +1,22 @@
+[508]% ./soda fakefile
+Error: could not open input file fakefile
+-------------------------------------------------------
+Testing with non existent configuration file
+
+
+[509]% ./soda realfile 0
+Usage: ./soda [ config-file [ random-seed (> 0) ] ]
+-------------------------------------------------------
+Testing with a real configuration file, but invalid 2nd argument
+
+
+[510]% ./soda fakefile -1
+Usage: ./soda [ config-file [ random-seed (> 0) ] ]
+-------------------------------------------------------
+Testing with 2 invalid arguments
+
+
+[511]% ./soda realfile 0
+(output omitted)
+-------------------------------------------------------
+testing with 2 valid arguments
