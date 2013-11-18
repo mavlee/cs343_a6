@@ -1,4 +1,4 @@
 cs343_a6
 ========
 
-the last assignment!!1!111
+don't use this code, policy 71
